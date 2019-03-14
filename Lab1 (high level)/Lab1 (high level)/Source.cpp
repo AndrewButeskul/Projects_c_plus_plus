@@ -12,86 +12,29 @@ struct Stud
 		short cours;
 		short number_group;
 	}G;
-	float ses[4];
+	float ses[4];	
+	float aver = 0;
 
+	float Ses()
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			aver = aver + ses[i];
+		}
+		aver = aver / 4;
+		return aver;
+	}
 	void print()
 	{
 		std::cout << "\n|-----------------------------------------------------------------|\n";
-		std::cout << "| Имя: " << Name << " " << inithial[0] << ". " << inithial[1] << "." << "\n";
+		std::cout << "\nИмя: " << Name << " " << inithial[0] << ". " << inithial[1] << "." << "\n";
 		std::cout << "Группа: " << G.name_group << "\n";
 		std::cout << "Факультет: " << G.facultet << "\n";
 		std::cout << "Курс: " << G.cours << "\n";
 		std::cout << "Номер группы: " << G.number_group << "\n";
-		float a = 0;
-		for (int i = 0; i < 4; i++)
-		{
-			a += ses[i];			
-		}
-		a = a / 4;
-		std::cout << "Средняя оценка: " << a << "\n";
-	 }
+		std::cout << "Средняя оценка: " << aver << "\n";
+	}
 };
-
-
-//void input(Stud *student, short n)
-//{
-//	for (int i = 0; i < n; i++)
-//	{
-//		std::cout << "Введите фамилию\n";
-//		std::cin >> student[i].Name;
-//
-//		std::cout << "Введите ваши инициалы\n";
-//		for (int j  = 0; i < 2; i++)
-//		{
-//			std::cin >> student[i].inithial[j];
-//		}		
-//
-//		std::cout << "Введите ваш факультет\n";
-//		std::cin >> student[i].G.facultet;
-//
-//		std::cout << "Введите номер вашего курса\n";
-//		std::cin >> student[i].G.cours;
-//		if (student[i].G.cours > 5 || student[i].G.cours < 0)
-//		{
-//			std::cout << "Пожалуйста повторите ввод! Вы ввели некоректное значение\n";
-//			break;
-//		}
-//
-//		std::cout << "Введите название вашей группы\n";
-//		std::cin >> student[i].G.name_group;
-//
-//		std::cout << "Введите номер вашей группы\n";
-//		std::cin >> student[i].G.number_group;
-//
-//		for (int j = 0; j < 4; j++)
-//		{
-//			std::cout << "Введите вашу оценку по " << j + 1 << "предмету\n";
-//			std::cin >> student[i].ses[j];
-//			if (student[i].ses[j] > 5 || student[i].ses[j] < 0)
-//			{
-//				std::cout << "Пожалуйста повторите ввод! Вы ввели некоректное значение\n";
-//				break;
-//			}			
-//		}		
-//	}
-//}
-
-//------------------------
-//void Print(Stud *student, short n, float average)
-//{
-//	for (int i = 0; i < n; i++)
-//	{
-//		std::cout << "\n|-----------------------------------------------------------------|\n";
-//		std::cout << "| Имя: " << student[i].Name << " " << student[i].inithial[0] << ". " << student[i].inithial[1] << "." << "\n";
-//		std::cout << "Группа: " << student[i].G.name_group << "\n";
-//		std::cout << "Факультет: " << student[i].G.facultet << "\n";
-//		std::cout << "Курс: " << student[i].G.cours << "\n";
-//		std::cout << "Номер группы: " << student[i].G.number_group << "\n";
-//		std::cout << "Средняя оценка: " << Ses(student, n, average) << "\n";
-//	}	
-//}
-//--------------------------
-
 
 void fill(Stud *student, short n)
 {
@@ -118,36 +61,116 @@ void fill(Stud *student, short n)
 		student[i].G.name_group = "АТ";
 
 		student[i].G.number_group = 182;
+	}	
+	for (int j = 0; j < 4; j++)
+	{
+		student[0].ses[j] = 2;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[1].ses[j] = 5;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[2].ses[j] = 3;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[3].ses[j] = 4.6;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[4].ses[j] = 4.5;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[5].ses[j] = 1.5;
+	}	
+	for (int j = 0; j < 4; j++)
+	{
+		student[6].ses[j] = 4;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[7].ses[j] = 2;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[8].ses[j] = 1;
+	}
+	for (int j = 0; j < 4; j++)
+	{
+		student[9].ses[j] = 4;
+	}
+}
+
+/*void input(Stud *student, short n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << "Введите фамилию\n";
+		std::cin >> student[i].Name;
+
+		std::cout << "Введите ваши инициалы\n";
+		for (int j  = 0; j < 2; j++)
+		{
+			std::cin >> student[i].inithial[j];
+		}		
+
+		std::cout << "Введите ваш факультет\n";
+		std::cin >> student[i].G.facultet;
+
+		std::cout << "Введите номер вашего курса\n";
+		std::cin >> student[i].G.cours;
+		if (student[i].G.cours > 5 || student[i].G.cours < 0)
+		{
+			std::cout << "Пожалуйста повторите ввод! Вы ввели некоректное значение\n";
+			break;
+		}
+		std::cout << "Введите название вашей группы\n";
+		std::cin >> student[i].G.name_group;
+
+		std::cout << "Введите номер вашей группы\n";
+		std::cin >> student[i].G.number_group;
 
 		for (int j = 0; j < 4; j++)
 		{
-			student[i].ses[j] = 5;
+			std::cout << "Введите вашу оценку по " << j + 1 << " предмету\n";
+			std::cin >> student[i].ses[j];
+			if (student[i].ses[j] > 5 || student[i].ses[j] < 0)
+			{
+				std::cout << "Пожалуйста повторите ввод! Вы ввели некоректное значение\n";
+				break;
+			}			
 		}		
 	}
-
-}
-
-float Ses(Stud *student, short n, float average)
+}*/
+void sort_name(Stud *student, short n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < 4; j++)
+		for (int j = i + 1; j < n; j++)
 		{
-			average += student[i].ses[j];			
+			if (strcmp(student[i].Name.c_str(), student[j].Name.c_str()) > 0)
+			{
+				std::swap(student[i], student[j]);
+			}
 		}
-		return (average / 4);
-	}	
+	}
 }
 
-void sort(Stud *student, short n)
+void sort_mark(Stud *student, short n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		if (strcmp(student[i].Name.c_str(), student[i+1].Name.c_str()) > 0)
+		for (int j = i + 1; j < n; j++)
 		{
-			std::swap(student[i], student[i + 1]);
+			if (student[i].Ses() > student[j].Ses())
+			{
+				std::swap(student[i], student[j]);
+			}
 		}
-	}	
+	}
 }
 
 int main()
@@ -158,23 +181,29 @@ int main()
 	Stud *student = new Stud[10];
 	
 	//input(student, n);
-
 	fill(student, n);
 
+	sort_name(student, n);
+	std::cout << "Список всех студентов (в алфавитном порядке)\n";
 	for (int i = 0; i < n; i++)
 	{
-		if (Ses(student, n, average) > 4.2)
+		student[i].print();
+	}
+	std::cout << "\nСтуденты и их данные, средний бал которых выше 4,2 (отсортирован по возростанию бала)";
+	sort_mark(student, n);
+	for (int i = 0; i < n; i++)
+	{
+		if (student[i].Ses() > (float)4.2)
 		{
-			sort(student, n);
 			student[i].print();
 		}
-		else
+	}			
+		/*else
 		{
 			std::cout << "Студентов со средней оценкой в 4,2 и выше, нету!\n";
-			break;
-		}
-	}
-
+			return 0;
+		}*/
+	
 	delete[] student;
 	system("Pause");
 	return 0;
