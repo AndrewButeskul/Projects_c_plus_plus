@@ -17,6 +17,7 @@ struct Stud
 
 	float Ses()
 	{
+		aver = 0;
 		for (int i = 0; i < 4; i++)
 		{
 			aver = aver + ses[i];
@@ -36,7 +37,7 @@ struct Stud
 	}
 };
 
-void fill(Stud *student, short n)
+/*void fill(Stud *student, short n)
 {
 	student[0].Name = "Иванов";
 	student[1].Name = "Спатар";
@@ -47,7 +48,7 @@ void fill(Stud *student, short n)
 	student[6].Name = "Шумин";
 	student[7].Name = "Пенчев";
 	student[8].Name = "Баблюк";
-	student[9].Name = "Громов";
+	student[9].Name = "Мясников";
 
 	for (int i = 0; i < n; i++)
 	{
@@ -102,9 +103,9 @@ void fill(Stud *student, short n)
 	{
 		student[9].ses[j] = 4;
 	}
-}
+}*/
 
-/*void input(Stud *student, short n)
+void input(Stud *student, short n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -144,7 +145,7 @@ void fill(Stud *student, short n)
 			}			
 		}		
 	}
-}*/
+}
 void sort_name(Stud *student, short n)
 {
 	for (int i = 0; i < n; i++)
@@ -180,29 +181,36 @@ int main()
 	short n = 10;
 	Stud *student = new Stud[10];
 	
-	//input(student, n);
-	fill(student, n);
+	input(student, n);
+	//fill(student, n); //автоматическое заполнение информации
 
 	sort_name(student, n);
 	std::cout << "Список всех студентов (в алфавитном порядке)\n";
 	for (int i = 0; i < n; i++)
 	{
+		student[i].Ses();
 		student[i].print();
 	}
-	std::cout << "\nСтуденты и их данные, средний бал которых выше 4,2 (отсортирован по возростанию бала)";
+	std::cout << "\nСтуденты и их данные, средний бал которых выше 4,2 (отсортирован по возростанию бала)\n";
 	sort_mark(student, n);
 	for (int i = 0; i < n; i++)
 	{
 		if (student[i].Ses() > (float)4.2)
 		{
 			student[i].print();
-		}
-	}			
-		/*else
+		}		
+	}	
+	for (int i = 0; i < n; i++)
+	{
+		if (student[i].Ses() < (float)4.2)
 		{
-			std::cout << "Студентов со средней оценкой в 4,2 и выше, нету!\n";
-			return 0;
-		}*/
+			int count = i + 1;
+			if (count == 10)
+			{
+				std::cout << "Студентов со средней оценкой в 4,2 и выше, нету!\n";
+			}
+		}	
+	}		
 	
 	delete[] student;
 	system("Pause");
