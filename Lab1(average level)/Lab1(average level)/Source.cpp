@@ -40,9 +40,23 @@ void data_input(Employee *worker, int n)
 		std::cin >> worker[i].salary;
 
 		std::cout << "Enter date " << "\n";
-		std::cin >> worker[i].date[0];
-		std::cin >> worker[i].date[1];
-		std::cin >> worker[i].date[2];
+		do
+		{
+			std::cout << "Day  " << "\n";
+			std::cin >> worker[i].date[0];
+		} while (worker[i].date[0] > 30);
+		do
+		{
+			std::cout << "Mouth " << "\n";
+			std::cin >> worker[i].date[1];
+		} while (worker[i].date[1] > 12);
+		
+		do
+		{
+			std::cout << "Year " << "\n";
+			std::cin >> worker[i].date[2];
+		} while (worker[i].date[2] > 2019);
+		
 	}
 }
 

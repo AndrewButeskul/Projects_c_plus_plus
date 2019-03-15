@@ -37,7 +37,7 @@ struct Stud
 	}
 };
 
-/*void fill(Stud *student, short n)
+void fill(Stud *student, short n)
 {
 	student[0].Name = "Иванов";
 	student[1].Name = "Спатар";
@@ -103,9 +103,9 @@ struct Stud
 	{
 		student[9].ses[j] = 4;
 	}
-}*/
+}
 
-void input(Stud *student, short n)
+/*void input(Stud *student, short n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -145,7 +145,7 @@ void input(Stud *student, short n)
 			}			
 		}		
 	}
-}
+}*/
 void sort_name(Stud *student, short n)
 {
 	for (int i = 0; i < n; i++)
@@ -181,8 +181,8 @@ int main()
 	short n = 10;
 	Stud *student = new Stud[10];
 	
-	input(student, n);
-	//fill(student, n); //автоматическое заполнение информации
+	//input(student, n);
+	fill(student, n); //автоматическое заполнение информации
 
 	sort_name(student, n);
 	std::cout << "Список всех студентов (в алфавитном порядке)\n";
