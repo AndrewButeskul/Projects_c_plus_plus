@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<ctime>
 
 struct Stud 
 {
@@ -48,7 +49,7 @@ void fill(Stud *student, short n)
 	student[6].Name = "Шумин";
 	student[7].Name = "Пенчев";
 	student[8].Name = "Баблюк";
-	student[9].Name = "Мясников";
+	student[9].Name = "Мясников";	
 
 	for (int i = 0; i < n; i++)
 	{
@@ -63,46 +64,13 @@ void fill(Stud *student, short n)
 
 		student[i].G.number_group = 182;
 	}	
-	for (int j = 0; j < 4; j++)
+	for (int i = 0; i < n; i++)
 	{
-		student[0].ses[j] = 2;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[1].ses[j] = 5;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[2].ses[j] = 3;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[3].ses[j] = 4.6;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[4].ses[j] = 4.5;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[5].ses[j] = 1.5;
+		for (int j = 0; j < 4; j++)
+		{
+			student[i].ses[j] = rand() % 5; 
+		}
 	}	
-	for (int j = 0; j < 4; j++)
-	{
-		student[6].ses[j] = 4;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[7].ses[j] = 2;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[8].ses[j] = 1;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		student[9].ses[j] = 4;
-	}
 }
 
 /*void input(Stud *student, short n)
@@ -177,6 +145,7 @@ void sort_mark(Stud *student, short n)
 int main()
 {
 	setlocale(LC_ALL, "ru");
+	srand(time(NULL));
 	float average = 0;
 	short n = 10;
 	Stud *student = new Stud[10];
@@ -191,7 +160,7 @@ int main()
 		student[i].Ses();
 		student[i].print();
 	}
-	std::cout << "\nСтуденты и их данные, средний бал которых выше 4,2 (отсортирован по возростанию бала)\n";
+	std::cout << "\nСтуденты, средний бал которых выше 4,2 (отсортирован по возростанию бала)\n";
 	sort_mark(student, n);
 	for (int i = 0; i < n; i++)
 	{
