@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<cstdlib>
 
 using namespace std;
 
@@ -41,8 +42,9 @@ struct Student
 	}
 };
 
-void data_input(Student *student, int n)
+void data_input(Student *student, int n, bool check_data)
 {
+	check_data = true;
 	for (int i = 0; i < n; i++)
 	{
 		cout << endl << "Enter name " << "\n";
@@ -124,9 +126,8 @@ void data_input(Student *student, int n)
 		{
 			cout << "Enter average mark " << "\n";
 			cin >> student[i].average_mark;
-		} while (student[i].average_mark > 6 && student[i].average_mark < 0);
-		
-	}
+		} while (student[i].average_mark > 6 && student[i].average_mark < 0);		
+	}	
 }
 
 void sort_name(Student *student, int n)
@@ -159,35 +160,97 @@ void sort_date(Student *student, int n)
 	}
 }
 
-int main()
+void Main_Window(int selection, Student *student, int n, bool check_data)
 {
-	int n = 0, selection = 0;
-	cout << "Please enter quality students!\n";
-	cin >> n;
-
-	Student *student = new Student[n];
-	data_input(student, n);
-
-	cout << "\n1. Alphabetical sorting\n2. Sort date\n";
-	cin >> selection;
+	system("cls");
+	cout << "\nPlease select a section:";
+	cout << "\n1. Add data \n2. Output arrays structs \n3. Alphabetical sorting \n4. Sort date \n5. Search student \n6. Exit from programm\n";
+	cin >> selection;	
 	switch (selection)
 	{
 	case 1:
-		sort_name(student, n);
+		system("cls");
+		cout << "Fill in the information:\n";
+		data_input(student, n, check_data);
+		int selec;
+		cout << "\nWhat's next?\n1. Back to main menu \n2. Add more students\n";
+		cin >> selec;
+		if (selec == 1)
+			Main_Window(selection, student, n, check_data);	
+			
 		break;
 	case 2:
+		link_print:
+		system("cls");
+		if (check_data != true)
+		{
+			cout << "All students\n";
+			for (int i = 0; i < n; i++)
+			{
+				student[i].Print();
+			}
+		}			
+		else
+			cout << "Error! Add students!)";			
+			
+			cout << "\n1. Do you want to back to main menu?(Enter 1 - Yes | 2 - Exit)\n";
+			cin >> selec;
+			if (selec == 1)
+				Main_Window(selection, student, n, check_data);
+			else if (selec == 2)
+				exit(0);
+			else;
+			break;
+		
+	case 3:
+		system("cls");
+		cout << "Sort in the name:\n";
+		sort_name(student, n);
+		cout << "Sort completed! \nWhat`s next? \n1. Back to main menu \n2. Look on the data about students\n";
+		cin >> selec;
+		if (selec == 1)
+			Main_Window(selection, student, n, check_data);
+		else if (selec == 2)
+			goto link_print;
+		break;
+	case 4:
+		system("cls");
+		cout << "Sort in the date:\n";
 		sort_date(student, n);
+		cout << "Sort completed! \nWhat`s next? \n1. Back to main menu \n2. Look on the data about students\n";
+		cin >> selec;
+		if (selec == 1)
+			Main_Window(selection, student, n, check_data);
+		else if (selec == 2)
+			goto link_print;
 		break;
+	case 5:
+		//binary_function();
+		break;
+	case 6:
+		exit(0);
 	default:
+		cout << "\nERROR! RETURN INPUT";
+		cout << "\nWhat`s next? \n1. Exit \n2. Back to main menu\n";
+		cin >> selec;
+		if (selec == 1)
+			exit(0);
+		else if(selec == 2)
+			Main_Window(selection, student, n, check_data);
+		else;
 		break;
 	}
+}
+
+int main()
+{
+	int n = 0, selection = 0;
+	bool check_data = false;
+	cout << "Please enter quality students!\n";
+	cin >> n;
+	Student *student = new Student[n];	
+	Main_Window(selection, student, n, check_data);
 	
-
-	for (int i = 0; i < n; i++)
-	{
-		student[i].Print();
-	}
-
 	delete[] student;
 	system("pause");
 	return 0;
