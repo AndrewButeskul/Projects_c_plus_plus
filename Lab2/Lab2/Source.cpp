@@ -42,9 +42,8 @@ struct Student
 	}
 };
 
-void data_input(Student *student, int n, bool check_data)
+void data_input(Student *student, int n)
 {
-	check_data = true;
 	for (int i = 0; i < n; i++)
 	{
 		cout << endl << "Enter name " << "\n";
@@ -160,6 +159,24 @@ void sort_date(Student *student, int n)
 	}
 }
 
+void search(Student *student, int n)
+{
+	cout << "\nPlease enter 'Last name' for searching\n";
+	string str;
+	cin >> str;
+	int count = 0;
+	for (int i = 0; i < n; i++)
+	{		
+		if (student[i].last_name == str)
+		{
+			student[i].Print();
+			count++;
+		}
+	}
+	if (count == 0)
+		cout << "Error! No such student\n";
+}
+
 void Main_Window(int selection, Student *student, int n, bool check_data)
 {
 	system("cls");
@@ -171,18 +188,20 @@ void Main_Window(int selection, Student *student, int n, bool check_data)
 	case 1:
 		system("cls");
 		cout << "Fill in the information:\n";
-		data_input(student, n, check_data);
+		data_input(student, n);
+		check_data = true;
 		int selec;
 		cout << "\nWhat's next?\n1. Back to main menu \n2. Add more students\n";
 		cin >> selec;
 		if (selec == 1)
-			Main_Window(selection, student, n, check_data);	
-			
+			Main_Window(selection, student, n, check_data);
+		/*else if (selec == 2)
+			add_student(student, n);	*/		
 		break;
 	case 2:
 		link_print:
 		system("cls");
-		if (check_data != true)
+		if (check_data)
 		{
 			cout << "All students\n";
 			for (int i = 0; i < n; i++)
@@ -192,7 +211,6 @@ void Main_Window(int selection, Student *student, int n, bool check_data)
 		}			
 		else
 			cout << "Error! Add students!)";			
-			
 			cout << "\n1. Do you want to back to main menu?(Enter 1 - Yes | 2 - Exit)\n";
 			cin >> selec;
 			if (selec == 1)
@@ -204,9 +222,15 @@ void Main_Window(int selection, Student *student, int n, bool check_data)
 		
 	case 3:
 		system("cls");
-		cout << "Sort in the name:\n";
-		sort_name(student, n);
-		cout << "Sort completed! \nWhat`s next? \n1. Back to main menu \n2. Look on the data about students\n";
+		if (check_data)
+		{
+			cout << "Sort in the name:\n";
+			sort_name(student, n);
+			cout << "Sort completed!";
+		}
+		else
+			cout<< "Error! Add students!)";
+		cout<< "\nWhat`s next? \n1. Back to main menu \n2. Look on the data about students\n";
 		cin >> selec;
 		if (selec == 1)
 			Main_Window(selection, student, n, check_data);
@@ -215,9 +239,15 @@ void Main_Window(int selection, Student *student, int n, bool check_data)
 		break;
 	case 4:
 		system("cls");
-		cout << "Sort in the date:\n";
-		sort_date(student, n);
-		cout << "Sort completed! \nWhat`s next? \n1. Back to main menu \n2. Look on the data about students\n";
+		if (check_data)
+		{
+			cout << "Sort in the date:\n";
+			sort_date(student, n);
+			cout << "Sort completed!";
+		}
+		else
+			cout << "Error! Add students!)";
+		cout << "\nWhat`s next? \n1. Back to main menu \n2. Look on the data about students\n";
 		cin >> selec;
 		if (selec == 1)
 			Main_Window(selection, student, n, check_data);
@@ -225,7 +255,17 @@ void Main_Window(int selection, Student *student, int n, bool check_data)
 			goto link_print;
 		break;
 	case 5:
-		//binary_function();
+		system("cls");
+		if (check_data)
+			search(student, n);
+		else
+			cout << "Error! Add students)";
+		cout << "\nWhat`s next? \n1. Exit \n2. Back to main menu\n";
+		cin >> selec;
+		if (selec == 1)
+			exit(0);
+		else if (selec == 2)
+			Main_Window(selection, student, n, check_data);
 		break;
 	case 6:
 		exit(0);
